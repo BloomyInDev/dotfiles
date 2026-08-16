@@ -31,14 +31,15 @@ Remove with `stow -D -t ~ <package>`, re-link after adding files with
 
 ## Documentation
 
-[**Configuration choices**](docs/choices.md) — why each config is set up the
-way it is, and the non-obvious bits worth knowing before editing them.
+- [**Configuration choices**](docs/choices.md): why each config is set up
+  the way it is, and the non-obvious bits worth knowing before editing them.
+- [**Keybinds**](docs/keybinds.md): every Hyprland bind, plus gestures.
 
 ## Credits & licence
 
 Originally based on the [ML4W Hyprland
 Starter](https://github.com/mylinuxforwork/hyprland-starter) by Stephan
-Raabe (GPL-3.0), and has diverged substantially since — the Hyprland config
+Raabe (GPL-3.0), and has diverged substantially since. The Hyprland config
 was rewritten in Lua, and the waybar/wlogout configs have been reworked.
 Files still carrying upstream authorship keep their original headers.
 
