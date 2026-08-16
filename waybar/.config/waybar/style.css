@@ -12,16 +12,33 @@
  * Licensed under the GPL-3.0, see LICENSE at the repository root.
  * -----------------------------------------------------
 */
-@define-color backgroundlight #4d00ac;
-@define-color backgrounddark #4d00ac;
-@define-color workspacesbackground1 #4d00ac;
-@define-color workspacesbackground2 #6300dc;
-@define-color bordercolor #FFFFFF;
-@define-color textcolor1 #FFFFFF;
-@define-color textcolor2 #FFFFFF;
-@define-color textcolor3 #FFFFFF;
-@define-color iconcolor #FFFFFF;
-@define-color errorcolor #956bc7;
+/* Catppuccin Frappé, Lavender accent. Palette: https://catppuccin.com/palette */
+@define-color crust     #232634;
+@define-color surface0  #414559;
+@define-color surface1  #51576d;
+@define-color text      #c6d0f5;
+@define-color subtext0  #a5adce;
+@define-color lavender  #babbf1;
+@define-color green     #a6d189;
+@define-color yellow    #e5c890;
+@define-color red       #e78284;
+
+/* Roles. Every pill is @surface0, the active workspace is the one accent. */
+@define-color pill      @surface0;
+@define-color pilltext  #ffffff;
+@define-color accent    @lavender;
+
+/* Legacy names kept so the rules below read the same as upstream. */
+@define-color backgroundlight @pill;
+@define-color backgrounddark @pill;
+@define-color workspacesbackground1 @accent;
+@define-color workspacesbackground2 @surface1;
+@define-color bordercolor @accent;
+@define-color textcolor1 @pilltext;
+@define-color textcolor2 @pilltext;
+@define-color textcolor3 @pilltext;
+@define-color iconcolor @pilltext;
+@define-color errorcolor @red;
 
 /* -----------------------------------------------------
  * General 
@@ -53,7 +70,7 @@ window#waybar {
     font-weight: bold;
     font-style: normal;
     font-size: 16px;
-    color: @textcolor1;
+    color: @text;
 }
 
 #workspaces button {
@@ -61,12 +78,12 @@ window#waybar {
     margin: 4px 3px;
     border-radius: 15px;
     border: 0px;
-    color: @textcolor3;
+    color: @text;
     transition: all 0.3s ease-in-out;
 }
 
 #workspaces button.active {
-    color: @textcolor1;
+    color: @crust;
     background: @workspacesbackground1;
     border-radius: 15px;
     min-width: 40px;
@@ -74,7 +91,7 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    color: @textcolor1;
+    color: @crust;
     background: @workspacesbackground2;
     border-radius: 15px;
 }
@@ -195,7 +212,8 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #custom-exit {
-    background-color: @backgroundlight;
+    background-color: @accent;
+    color: @text;
     border-radius: 50%;
     margin: 8px 8px 8px 3px;
     padding: 0px;
@@ -253,8 +271,8 @@ window#waybar.empty #window {
 }
 
 #pulseaudio.muted {
-    background-color: @backgrounddark;
-    color: @textcolor1;
+    background-color: @accent;
+    color: @subtext0;
 }
 
 /* -----------------------------------------------------
@@ -310,20 +328,20 @@ window#waybar.empty #window {
 }
 
 #battery.charging, #battery.plugged {
-    color: @textcolor2;
-    background-color: @backgroundlight;
+    color: @text;
+    background-color: @accent;
 }
 
 @keyframes blink {
     to {
-        background-color: @backgroundlight;
-        color: @textcolor2;
+        background-color: @accent;
+        color: @crust;
     }
 }
 
 #battery.critical:not(.charging) {
     background-color: @errorcolor;
-    color: @textcolor3;
+    color: @crust;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -336,7 +354,8 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #tray {
-    margin:0px 10px 0px 0px;
+    margin: 8px 5px 8px 0px;
+    padding: 0px 4px;
 }
 
 #tray > .passive {
@@ -345,7 +364,7 @@ window#waybar.empty #window {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background-color: @red;
 }
 
 /* -----------------------------------------------------

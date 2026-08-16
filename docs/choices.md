@@ -11,9 +11,10 @@ it: `hyprtoolkit.conf` for Hyprland's own dialogs, `qt6ct` for Qt apps
 (`colors/catppuccin-frappe-lavender.conf`), and Zed (Frappé dark, Mocha
 light, matching icon theme).
 
-The bar and launcher are the exception. `waybar` and `rofi` run their own
-purple (`#4d00ac`) rather than a Frappé colour, so changing the accent means
-editing those two stylesheets by hand. GTK apps are on `Adwaita-dark`.
+`waybar` carries the palette at the top of its stylesheet: pills are
+`surface0`, the active workspace is Lavender, and text is white rather than
+Frappé's `text` because white stays legible on a translucent bar. `rofi` is
+still on its own purple, and GTK apps are on `Adwaita-dark`.
 
 Cursor is `Bibata-Modern-Classic` at size 24, set once in `vars.cursor` and
 applied at session start.
