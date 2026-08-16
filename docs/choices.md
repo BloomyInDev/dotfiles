@@ -123,7 +123,14 @@ Fira Sans 11 to match waybar.
 
 ## zed
 
-VSCode keymap, Catppuccin (Frappé dark / Mocha light). `ssh_connections`
-holds the homelab remotes so projects open directly over SSH.
+VSCode keymap, Catppuccin (Frappé dark / Mocha light).
 `on_last_window_closed: quit_app`, so closing the last window quits
 instead of leaving a headless process around.
+
+`ssh_connections` is deliberately absent: it names internal hosts, and Zed
+rewrites this file itself, so anything added through the UI lands straight
+in a tracked file.
+
+---
+
+Written by Claude Opus 5 (Claude Code), reviewed by Bastien.

@@ -89,3 +89,7 @@ so a paired phone doesn't swallow the keypress.
 |---|---|
 | 3 fingers horizontal | Switch workspace |
 | `SUPER` + 2 finger pinch | Fullscreen |
+
+---
+
+Written by Claude Opus 5 (Claude Code), reviewed by Bastien.

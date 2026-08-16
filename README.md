@@ -34,6 +34,8 @@ Remove with `stow -D -t ~ <package>`, re-link after adding files with
 - [**Configuration choices**](docs/choices.md): why each config is set up
   the way it is, and the non-obvious bits worth knowing before editing them.
 - [**Keybinds**](docs/keybinds.md): every Hyprland bind, plus gestures.
+- [**Fresh machine setup**](docs/setup.md): packages to install, the `~/.ssh`
+  layout the git identities expect, and the agent / signing setup.
 
 ## Credits & licence
 
