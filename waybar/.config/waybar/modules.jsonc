@@ -1,0 +1,220 @@
+//  __  __           _       _            
+// |  \/  | ___   __| |_   _| | ___  ___  
+// | |\/| |/ _ \ / _` | | | | |/ _ \/ __| 
+// | |  | | (_) | (_| | |_| | |  __/\__ \ 
+// |_|  |_|\___/ \__,_|\__,_|_|\___||___/ 
+//                                        
+//  
+// Originally by Stephan Raabe (2023)
+// Modified 2026 by Bastien <contact@bloomyindev.me> (BloomyInDev)
+//
+// Licensed under the GPL-3.0, see LICENSE at the repository root.
+// -----------------------------------------------------
+//
+{
+  // Workspaces
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "active-only": false,
+    "all-outputs": true,
+    "format": "{}",
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": ""
+    },
+    "persistent-workspaces": {
+      "*": 1
+    }
+  },
+  // Hyprland Window
+  "hyprland/window": {
+    "rewrite": {
+      "(.*) - Brave": "$1",
+      "(.*) - Chromium": "$1",
+      "(.*) - Brave Search": "$1",
+      "(.*) - Outlook": "$1",
+      "(.*) Microsoft Teams": "$1"
+    },
+    "separate-outputs": true
+  },
+  // Rofi Application Launcher
+  "custom/appmenu": {
+    "format": "Apps",
+    "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings",
+    "on-click": "rofi -show drun -replace",
+    "on-click-right": "~/.config/ml4w/scripts/keybindings.sh",
+    "tooltip": false
+  },
+  // Power Menu
+  "custom/exit": {
+    "format": "",
+    "tooltip-format": "Powermenu",
+    "on-click": "wlogout -b 3",
+    "tooltip": false
+  },
+  // Keyboard State
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+  // System tray
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 8
+  },
+  // Clock
+  "clock": {
+    // "timezone": "America/New_York",
+    "format": "{:%H:%M %d/%m/%Y}",
+    "tooltip-format": "<big>{:%d/%m/%Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%H:%M}"
+  },
+  // Clock without the date (small screens) - date on hover, full on click
+  "clock#short": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "<big>{:%d/%m/%Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%H:%M %d/%m/%Y}"
+  },
+  // System
+  "custom/system": {
+    "format": "",
+    "tooltip": false
+  },
+  // CPU
+  "cpu": {
+    "format": " {usage}%",
+    "on-click": "kitty -T \"btop\" -e btop"
+  },
+  // Memory
+  "memory": {
+    "format": " {}%",
+    "on-click": "kitty -T \"btop\" -e btop"
+  },
+  // Harddisc space used
+  "disk": {
+    "interval": 30,
+    "format": "D {percentage_used}% ",
+    "path": "/",
+    "on-click": "alacritty -e htop"
+  },
+  "hyprland/language": {
+    "format": "/ K {short}"
+  },
+  // CPU / Memory without percentages (small screens)
+  "cpu#mini": {
+    "format": "\uf2db",
+    "on-click": "kitty -T \"btop\" -e btop"
+  },
+  "memory#mini": {
+    "format": "\uf538",
+    "on-click": "kitty -T \"btop\" -e btop"
+  },
+  "group/hardware-mini": {
+    "orientation": "inherit",
+    "modules": [
+      "cpu#mini",
+      "memory#mini"
+    ]
+  },
+  // Group Hardware
+  "group/hardware": {
+    "orientation": "inherit",
+    "modules": [
+      "cpu",
+      "memory"
+    ]
+  },
+  // Network
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": " {signalStrength}%",
+    "format-ethernet": " {ifname}",
+    "format-disconnected": "Not connected", //An empty format will hide the module.
+    "tooltip-format": " {ifname} via {gwaddri}",
+    "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "on-click": "kitty -T \"Network Manager\" -e \"nmtui\""
+  },
+  // Battery
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {time}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
+  },
+  // Pulseaudio
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        " ",
+        " "
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  // Bluetooth
+  "bluetooth": {
+    "format-disabled": "",
+    "format-off": "",
+    "interval": 30,
+    "on-click": "blueman-manager",
+    "format-no-controller": ""
+  },
+  // Other
+  "user": {
+    "format": "{user}",
+    "interval": 60,
+    "icon": false,
+  },
+  // Idle Inhibator
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "tooltip": true,
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "on-click-right": "hyprlock"
+  },
+  "custom/music": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "waybar-module-music"
+  }
+}

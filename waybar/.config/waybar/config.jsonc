@@ -1,0 +1,64 @@
+[
+  // ----------------------------------------------------------------
+  // Main screen (eDP-1) - full module set
+  // ----------------------------------------------------------------
+  {
+    "name": "main",
+    "output": ["eDP-1"],
+    "layer": "top",
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 2,
+    "margin-right": 2,
+    "spacing": 0,
+    "include": [
+      "~/.config/waybar/modules.jsonc"
+    ],
+    "modules-left": [
+      "hyprland/window"
+    ],
+    "modules-center": [
+      "hyprland/workspaces"
+    ],
+    "modules-right": [
+      "pulseaudio",
+      "network",
+      "group/hardware",
+      "battery",
+      "clock",
+      "tray",
+      "custom/exit"
+    ]
+  },
+  // ----------------------------------------------------------------
+  // Secondary screens - trimmed: cpu/mem icons only, title truncated
+  // ----------------------------------------------------------------
+  {
+    "name": "small",
+    "output": ["!eDP-1", "*"],
+    "layer": "top",
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 2,
+    "margin-right": 2,
+    "spacing": 0,
+    "include": [
+      "~/.config/waybar/modules.jsonc"
+    ],
+    "modules-left": [
+      "hyprland/window"
+    ],
+    "modules-center": [
+      "hyprland/workspaces"
+    ],
+    "modules-right": [
+      "pulseaudio",
+      "network",
+      "group/hardware",
+      "battery",
+      "clock#short",
+      "tray",
+      "custom/exit"
+    ]
+  }
+]
