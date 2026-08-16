@@ -41,10 +41,11 @@ return {
 		size = 24,
 	},
 
-	-- Theme
+	-- Theme. Catppuccin Frappé, same palette as waybar and hyprtoolkit.
+	-- lavender #babbf1, mauve #ca9ee6, surface0 #414559, crust #232634
 	colors = {
-		active_border = { colors = { "rgba(33ccffee)", "rgba(c6a0f6ff)" }, angle = 60 },
-		inactive_border = "rgba(595959aa)",
-		shadow = "rgba(1a1a1aee)",
+		active_border = { colors = { "rgba(babbf1ff)", "rgba(ca9ee6ff)" }, angle = 60 },
+		inactive_border = "rgba(414559aa)",
+		shadow = "rgba(232634ee)",
 	},
 }

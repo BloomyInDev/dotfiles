@@ -56,6 +56,9 @@ Files still carrying upstream authorship keep their original headers.
 
 Released under **GPL-3.0**, see [LICENSE](LICENSE).
 
+Colours come from [Catppuccin](https://github.com/catppuccin/catppuccin)
+(Frappé flavour, Lavender accent), used under the **MIT licence**.
+
 `wlogout/.config/wlogout/icons/windows.svg` is the Windows icon from
 [Font Awesome Free](https://fontawesome.com) 6.7.2, used under
 **CC BY 4.0**; the licence notice is retained inside the SVG.

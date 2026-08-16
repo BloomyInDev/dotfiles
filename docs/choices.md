@@ -16,6 +16,12 @@ light, matching icon theme).
 Frappé's `text` because white stays legible on a translucent bar. `rofi` is
 still on its own purple, and GTK apps are on `Adwaita-dark`.
 
+Window borders follow the same palette, set in `vars.colors`: focused
+windows get a Lavender to Mauve gradient at full opacity, unfocused ones a
+translucent `surface0`. Both at full alpha would wash out against the
+wallpaper, and mixing grey into the active gradient pulls it toward the
+background, which is the opposite of what a focus indicator should do.
+
 Cursor is `Bibata-Modern-Classic` at size 24, set once in `vars.cursor` and
 applied at session start.
 
