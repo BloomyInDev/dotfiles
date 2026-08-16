@@ -29,31 +29,10 @@ stow -t ~ hypr waybar wlogout git kitty rofi zed
 Remove with `stow -D -t ~ <package>`, re-link after adding files with
 `stow -R -t ~ <package>`.
 
-## Notes
+## Documentation
 
-**Git identities** — `~/.gitconfig` sets `useConfigOnly = true`, so there is no
-global name or email and every commit fails until a remote matches. The
-`includeIf "hasconfig:remote.*.url:..."` blocks then pull the right identity
-from `~/.config/gitremote/` based on the forge being pushed to, each with its
-own SSH signing key. Adding a forge means adding a file there plus two
-`includeIf` lines (one for the `ssh://` form, one for the `git@host:` form).
-
-The university identity is gitignored; the others are tracked. Copy
-`example.gitconfig.example` for any forge that is missing one — without a
-match, commits fail with `no name was given`, which is the intended
-behaviour of `useConfigOnly`.
-
-**Reboot to Windows** — the wlogout entry calls
-`systemctl reboot --boot-loader-entry=auto-windows`. That id comes from
-systemd-boot's auto-generated Windows Boot Manager entry; check yours with
-`bootctl list` and adjust `wlogout/.config/wlogout/layout` if it differs.
-No password prompt is needed because polkit allows
-`set-reboot-to-boot-loader-entry` for active local sessions.
-
-**Waybar per-output bars** — `config.jsonc` holds two bar objects: the full
-module set on `eDP-1`, and a trimmed one on `["!eDP-1", "*"]` for smaller
-external screens (short clock, date on hover). The `"*"` is required
-alongside the negation, otherwise waybar spawns no bar at all.
+[**Configuration choices**](docs/choices.md) — why each config is set up the
+way it is, and the non-obvious bits worth knowing before editing them.
 
 ## Credits & licence
 
