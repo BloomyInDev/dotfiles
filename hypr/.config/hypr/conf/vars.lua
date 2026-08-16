@@ -29,7 +29,10 @@ return {
 		clipboard = [[kitty --class clipse -T "clipse" clipse]],
 		logout = "wlogout -b 3",
 		lock = "hyprlock",
-		screenshot = [[grim -g "$(slurp)" ~/Pictures/$(date +'%s_grim.png') | wl-copy]],
+		-- grim writes to stdout ("-") so the image can go to the file *and* the
+		-- clipboard. Given a filename instead, nothing reaches the pipe.
+		-- slurp runs first so cancelling it leaves no empty file behind.
+		screenshot = [[g=$(slurp) && grim -g "$g" - | tee ~/Pictures/$(date +'%s_grim.png') | wl-copy -t image/png]],
 	},
 
 	-- Cursor. Used by conf/cursor.lua, conf/environments.lua and conf/autostart.lua

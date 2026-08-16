@@ -72,7 +72,7 @@ so a paired phone doesn't swallow the keypress.
 | `XF86AudioNext` / `Prev` | Next / previous track |
 | `CTRL + XF86AudioPlay` | Previous track (fires on release) |
 | `ALT + XF86AudioPlay` | Next track (fires on release) |
-| `Print` | Region screenshot to `~/Pictures`, copied to clipboard |
+| `Print` | Region screenshot: saved to `~/Pictures` and copied to the clipboard |
 
 ## Session
 

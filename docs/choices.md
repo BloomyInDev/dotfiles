@@ -4,6 +4,20 @@ Why each config is the way it is. The obvious settings are left out, so this
 only covers decisions that would be hard to reconstruct from reading the
 files.
 
+## Theming
+
+**Catppuccin Frappé, Lavender accent**, wherever a program can be told to use
+it: `hyprtoolkit.conf` for Hyprland's own dialogs, `qt6ct` for Qt apps
+(`colors/catppuccin-frappe-lavender.conf`), and Zed (Frappé dark, Mocha
+light, matching icon theme).
+
+The bar and launcher are the exception. `waybar` and `rofi` run their own
+purple (`#4d00ac`) rather than a Frappé colour, so changing the accent means
+editing those two stylesheets by hand. GTK apps are on `Adwaita-dark`.
+
+Cursor is `Bibata-Modern-Classic` at size 24, set once in `vars.cursor` and
+applied at session start.
+
 ## hypr
 
 **Lua, not hyprlang.** Hyprland deprecated the `.conf` format and warns
@@ -60,8 +74,8 @@ wallpapers and update the paths, or hyprpaper starts with nothing to show.
 
 **hyprlauncher** takes focus on open and caches its index between runs.
 
-**hyprtoolkit** carries the Catppuccin Frappé palette, which is what keeps
-Hyprland's own dialogs matching the rest of the desktop.
+**hyprtoolkit** carries the Catppuccin Frappé palette (see Theming above),
+which is what keeps Hyprland's own dialogs matching the rest of the desktop.
 
 Keybinds are documented separately in [keybinds.md](keybinds.md).
 
