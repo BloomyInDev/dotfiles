@@ -71,8 +71,8 @@ stow make
 ```
 
 Optional, per taste: `bitwarden-desktop`, `nextcloud`, `kdeconnect`,
-`galaxybudsclient`, all launched from `conf/autostart.lua`. Trim that list
-on a machine that does not need them.
+`galaxybudsclient`, all launched from `conf/autostart.lua`. I use them,
+you may not. Remove them if you don't need them.
 
 ## SSH
 
@@ -128,10 +128,29 @@ structure you pick, both for `signingkey` and for the matching
 `~/.ssh/config` is **not** in this repo, since it names internal hosts. It
 has to be copied across by hand.
 
+Here is an example `~/.ssh/config` for `github.com`:
+
+```
+Host github.com
+    IdentityFile ~/.ssh/github/main
+    IdentitiesOnly yes
+    AddKeysToAgent 5m
+```
+
+Or another for a server you connect to:
+
+```
+Host some-random-ass-server
+    HostName the.ip.addr.for.this.server.com
+    IdentityFile ~/.ssh/homelab/main
+    IdentitiesOnly yes
+    User bastien
+```
+
 ### Agent
 
 `SSH_AUTH_SOCK` is set to `${XDG_RUNTIME_DIR}/ssh-agent.socket` by
-`~/.config/environment.d/ssh.conf`, which is part of the repo. The socket
+`~/.config/environment.d/ssh.conf`, shipped as the `env` package. The socket
 itself comes from whatever agent you run (`ssh-agent.service`, or the
 Bitwarden desktop agent).
 

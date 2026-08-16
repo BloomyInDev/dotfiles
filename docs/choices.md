@@ -43,6 +43,26 @@ Hyprland). It also adds `hypr/.config/hypr/` to `runtime.path` so
 `require("conf.monitor")` resolves when the editor is opened at the repo
 root rather than inside `~/.config/hypr`.
 
+**hyprlock** authenticates with a fingerprint as well as a password, and the
+`$FPRINTPROMPT` variable in `placeholder_text` is what shows the reader
+prompt inside the input box. It needs `fprintd` set up and a working PAM
+stack; without one, the password field still works on its own.
+
+**hypridle** runs three staged listeners: dim the backlight to 10 after
+2.5 min (`brightnessctl -s` saves the level first, so `-r` restores whatever
+it was), lock at 5 min, suspend at 30 min. `lock_cmd` is guarded with
+`pidof hyprlock ||` so a second instance can never stack on top of the
+first, and `after_sleep_cmd` forces DPMS back on so waking does not need two
+keypresses.
+
+**hyprpaper** paths point at files this repo does not ship. Source your own
+wallpapers and update the paths, or hyprpaper starts with nothing to show.
+
+**hyprlauncher** takes focus on open and caches its index between runs.
+
+**hyprtoolkit** carries the Catppuccin Frappé palette, which is what keeps
+Hyprland's own dialogs matching the rest of the desktop.
+
 Keybinds are documented separately in [keybinds.md](keybinds.md).
 
 ## waybar
@@ -95,6 +115,12 @@ Reboot (r)  Windows (w)   Shutdown (s)
 ```
 
 Session-preserving actions on top, session-ending ones below.
+
+## env
+
+A single file, `~/.config/environment.d/ssh.conf`, setting `SSH_AUTH_SOCK`
+for the systemd user session so every graphical app finds the same agent.
+It is its own package because it is not tied to any one program.
 
 ## git
 

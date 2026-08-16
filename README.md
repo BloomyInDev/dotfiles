@@ -13,6 +13,7 @@ My personal Hyprland setup, based around Arch Linux, the Hyprland suite, waybar,
 | `kitty`   | `~/.config/kitty`  | Terminal                                          |
 | `rofi`    | `~/.config/rofi`   | Application launcher, called from the hypr binds  |
 | `zed`     | `~/.config/zed`    | Editor settings                                   |
+| `env`     | `~/.config/environment.d` | `SSH_AUTH_SOCK` for the systemd user session |
 
 ## Install
 
