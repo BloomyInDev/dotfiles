@@ -1,0 +1,28 @@
+; Template for a per-forge identity.
+;
+; Copy to <forge>.gitconfig in this directory, fill in your details, then
+; reference it from ~/.gitconfig with a pair of includeIf blocks:
+;
+;     [includeIf "hasconfig:remote.*.url:ssh://git@example.com/**"]
+;         path = ~/.config/gitremote/<forge>.gitconfig
+;     [includeIf "hasconfig:remote.*.url:git@example.com:*/**"]
+;         path = ~/.config/gitremote/<forge>.gitconfig
+;
+; Both forms are needed: git matches the remote URL literally, and the
+; ssh://  and  git@host:  spellings do not match the same pattern.
+;
+; Some identities here are gitignored when the address should stay private.
+
+[user]
+    email = you@example.com
+    name = Your Name
+    signingkey = ~/.ssh/example/main.pub
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers

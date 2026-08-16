@@ -1,0 +1,13 @@
+[user]
+    email = contact+i1kn7jai@bastienluben.dev
+    name = Bloomy
+    signingkey = ~/.ssh/dn42/main.pub
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers

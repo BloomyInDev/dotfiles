@@ -2,3 +2,6 @@
 *.swp
 *~
 .DS_Store
+
+# Student identity: university address, kept out of the public repo.
+git/.config/gitremote/gitlab_iut_info.gitconfig

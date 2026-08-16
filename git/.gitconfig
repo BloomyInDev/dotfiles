@@ -1,0 +1,25 @@
+[user]
+	useConfigOnly = true
+
+[includeIf "hasconfig:remote.*.url:ssh://git@github.com/**"]
+	path = ~/.config/gitremote/github.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
+	path = ~/.config/gitremote/github.gitconfig
+
+[includeIf "hasconfig:remote.*.url:ssh://git@gitlabinfo.iutmontp.univ-montp2.fr/**"]
+	path = ~/.config/gitremote/gitlab_iut_info.gitconfig
+[includeIf "hasconfig:remote.*.url:git@gitlabinfo.iutmontp.univ-montp2.fr:*/**"]
+	path = ~/.config/gitremote/gitlab_iut_info.gitconfig
+
+[includeIf "hasconfig:remote.*.url:ssh://git@git.red.bloomyindev.me/**"]
+	path = ~/.config/gitremote/forgejo_perso.gitconfig
+[includeIf "hasconfig:remote.*.url:git@git.red.bloomyindev.me:*/**"]
+	path = ~/.config/gitremote/forgejo_perso.gitconfig
+
+[includeIf "hasconfig:remote.*.url:ssh://git@git.dn42.dev/**"]
+	path = ~/.config/gitremote/gitea_dn42.gitconfig
+[includeIf "hasconfig:remote.*.url:git@git.dn42.dev:*/**"]
+	path = ~/.config/gitremote/gitea_dn42.gitconfig
+
+[advice]
+	addIgnoredFile = false

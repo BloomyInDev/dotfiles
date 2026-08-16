@@ -1,0 +1,13 @@
+[user]
+    email = contact@bloomyindev.me
+    name = Bastien
+    signingkey = ~/.ssh/homelab/forgejo.pub
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers
