@@ -20,14 +20,22 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/). Each top-level
 directory is a stow package whose inner structure mirrors `$HOME`.
 
 ```bash
-sudo pacman -S stow
+sudo pacman -S stow make
 git clone git@github.com:BloomyInDev/dotfiles.git ~/Dev/dotfiles
 cd ~/Dev/dotfiles
-stow -t ~ hypr waybar wlogout git kitty rofi zed
+make deps       # install everything in packages.txt with yay
+make install    # symlink every package into ~
 ```
 
-Remove with `stow -D -t ~ <package>`, re-link after adding files with
-`stow -R -t ~ <package>`.
+Act on a subset with `PKG`, and drop the links again just as easily:
+
+```bash
+make install PKG=waybar
+make remove PKG="waybar wlogout"
+make reinstall            # after adding or removing files in a package
+make check PKG=hypr       # dry run
+make list                 # available packages
+```
 
 ## Documentation
 

@@ -1,9 +1,19 @@
 # Fresh machine setup
 
 What has to exist outside this repo before the configs work. Everything here
-is Arch Linux with `pacman` / an AUR helper.
+is Arch Linux, with [yay](https://github.com/Jguer/yay) as the AUR helper.
 
 ## Packages
+
+The full list lives in [`packages.txt`](../packages.txt) at the repo root, so
+`make deps` can install it in one go:
+
+```bash
+make deps          # yay -S --needed <everything in packages.txt>
+make deps AUR=paru # or another helper
+```
+
+The groups below explain what each part is for.
 
 ### Core session
 
@@ -50,13 +60,14 @@ first, which renders them as unrelated letters.
 
 ### Cursor
 
-`bibata-cursor-git` (AUR). The theme name and size live in `vars.cursor` and
-are applied at session start via `hyprctl setcursor`.
+`bibata-cursor-git`, from the AUR, which is the one package here that yay is
+actually required for. The theme name and size live in `vars.cursor` and are
+applied at session start via `hyprctl setcursor`.
 
 ### Tooling
 
 ```
-stow
+stow make
 ```
 
 Optional, per taste: `bitwarden-desktop`, `nextcloud`, `kdeconnect`,

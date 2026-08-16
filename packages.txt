@@ -1,0 +1,45 @@
+# Packages needed by these configs, installed with `make deps` (yay).
+# One name per line, blank lines and # comments ignored.
+# See docs/setup.md for what each group is for.
+
+# Core session
+hyprland
+hyprlock
+hypridle
+hyprpaper
+hyprlauncher
+hyprpolkitagent
+xdg-desktop-portal-hyprland
+waybar
+wlogout
+dunst
+
+# Applications referenced by conf/vars.lua
+kitty
+thunar
+librewolf
+kate
+rofi-wayland
+clipse
+udiskie
+
+# Keybind dependencies
+playerctl
+brightnessctl
+wireplumber
+pipewire
+grim
+slurp
+wl-clipboard
+
+# Fonts
+ttf-fira-code
+ttf-fira-sans
+otf-font-awesome
+ttf-jetbrains-mono-nerd
+
+# Cursor (AUR)
+bibata-cursor-git
+
+# Tooling
+stow
