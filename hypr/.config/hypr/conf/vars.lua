@@ -2,6 +2,33 @@
 -- Each require() is its own lua scope, so other files pull this in with:
 --     local v = require("conf.vars")
 
+-- Catppuccin Frappé, the same palette as waybar and hyprtoolkit.
+local frappe = {
+	surface0 = "414559",
+	surface2 = "626880",
+	lavender = "babbf1",
+	mauve = "ca9ee6",
+	crust = "232634",
+}
+
+-- "babbf1" -> "rgba(babbf1ff)". Opaque unless an alpha is given.
+local function rgba(hex, alpha)
+	return ("rgba(%s%s)"):format(hex, alpha or "ff")
+end
+
+-- Gradient stops are spaced evenly and cannot be positioned, so a colour is
+-- weighted by repeating it. Each argument is { colour, count }, count 1 by
+-- default: gradient(60, { frappe.lavender, 6 }) is six lavender stops.
+local function gradient(angle, ...)
+	local stops = {}
+	for _, stop in ipairs({ ... }) do
+		for _ = 1, stop[2] or 1 do
+			stops[#stops + 1] = rgba(stop[1])
+		end
+	end
+	return { colors = stops, angle = angle }
+end
+
 return {
 	-- Main modifier key used by (almost) every bind
 	mod = "SUPER",
@@ -41,11 +68,13 @@ return {
 		size = 24,
 	},
 
-	-- Theme. Catppuccin Frappé, same palette as waybar and hyprtoolkit.
-	-- lavender #babbf1, mauve #ca9ee6, surface0 #414559, crust #232634
+	-- Theme. surface2 and mauve each shade one end of the active border, the
+	-- six lavender stops keep the rest of it on the accent. With fewer
+	-- lavender stops the surface2 end spreads across the whole top edge,
+	-- which reads as an unfocused window.
 	colors = {
-		active_border = { colors = { "rgba(babbf1ff)", "rgba(ca9ee6ff)" }, angle = 60 },
-		inactive_border = "rgba(414559aa)",
-		shadow = "rgba(232634ee)",
+		active_border = gradient(60, { frappe.surface2 }, { frappe.lavender, 6 }, { frappe.mauve }),
+		inactive_border = rgba(frappe.surface0, "aa"),
+		shadow = rgba(frappe.crust, "ee"),
 	},
 }

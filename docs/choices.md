@@ -22,6 +22,13 @@ translucent `surface0`. Both at full alpha would wash out against the
 wallpaper, and mixing grey into the active gradient pulls it toward the
 background, which is the opposite of what a focus indicator should do.
 
+Gradient stops are spaced evenly across the sweep, with no way to give one a
+position. Repeating a colour is how you weight it: Lavender appears six
+times, with `surface2` and Mauve once each, so the border reads as Lavender
+and the two ends only shade the corners. With fewer Lavender stops the
+`surface2` end spreads across the entire top edge, which is the edge you
+look at, and a grey top border reads as an unfocused window.
+
 Cursor is `Bibata-Modern-Classic` at size 24, set once in `vars.cursor` and
 applied at session start.
 
