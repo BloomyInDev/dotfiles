@@ -10,9 +10,19 @@
  * Modified 2026 by Bastien <contact@bloomyindev.me> (BloomyInDev)
  *
  * Licensed under the GPL-3.0, see LICENSE at the repository root.
+ *
+ * GTK CSS has no mixins, no nesting and no @apply: the only way to share
+ * a recipe is to list every widget that wants it in one selector group.
+ * So each "recipe" below is written once, and modules opt in by being
+ * named in its selector list. Per-module rules only carry the diff.
  * -----------------------------------------------------
 */
-/* Catppuccin Frappé, Lavender accent. Palette: https://catppuccin.com/palette */
+
+/* -----------------------------------------------------
+ * Palette - Catppuccin Frappé, Lavender accent.
+ * https://catppuccin.com/palette
+ * ----------------------------------------------------- */
+
 @define-color crust     #232634;
 @define-color surface0  #414559;
 @define-color surface1  #51576d;
@@ -28,20 +38,8 @@
 @define-color pilltext  #ffffff;
 @define-color accent    @lavender;
 
-/* Legacy names kept so the rules below read the same as upstream. */
-@define-color backgroundlight @pill;
-@define-color backgrounddark @pill;
-@define-color workspacesbackground1 @accent;
-@define-color workspacesbackground2 @surface1;
-@define-color bordercolor @accent;
-@define-color textcolor1 @pilltext;
-@define-color textcolor2 @pilltext;
-@define-color textcolor3 @pilltext;
-@define-color iconcolor @pilltext;
-@define-color errorcolor @red;
-
 /* -----------------------------------------------------
- * General 
+ * Base
  * ----------------------------------------------------- */
 
 * {
@@ -52,23 +50,81 @@
 
 window#waybar {
     background-color: rgba(0,0,0,0.5);
-    border-bottom: 0px solid #ffffff;
-    /* color: #FFFFFF; */
     transition-property: background-color;
     transition-duration: .5s;
 }
 
 /* -----------------------------------------------------
- * Workspaces 
+ * Recipe: pill
+ *
+ * The rounded @surface0 capsule every right-hand module sits in.
+ * Add a module here to give it the pill look; override afterwards.
+ * ----------------------------------------------------- */
+
+#window,
+#hardware,
+#hardware-mini,
+#pulseaudio,
+#network,
+#bluetooth,
+#battery,
+#clock,
+#custom-music,
+#custom-system {
+    background-color: @pill;
+    color: @pilltext;
+    border-radius: 15px;
+    margin: 8px 5px 8px 0px;
+    padding: 2px 10px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/* -----------------------------------------------------
+ * Recipe: accent state
+ *
+ * "This module wants your attention, but nothing is wrong."
+ * ----------------------------------------------------- */
+
+#pulseaudio.muted,
+#battery.charging,
+#battery.plugged,
+#workspaces button.active {
+    background-color: @accent;
+    color: @crust;
+}
+
+/* -----------------------------------------------------
+ * Recipe: error state
+ * ----------------------------------------------------- */
+
+#network.disconnected,
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @crust;
+}
+
+/* -----------------------------------------------------
+ * Window title
+ * ----------------------------------------------------- */
+
+#window {
+    margin-left: 5px;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
+}
+
+/* -----------------------------------------------------
+ * Workspaces
  * ----------------------------------------------------- */
 
 #workspaces {
     margin: 5px 1px 6px 1px;
     padding: 0px 1px;
     border-radius: 15px;
-    border: 0px;
     font-weight: bold;
-    font-style: normal;
     font-size: 16px;
     color: @text;
 }
@@ -77,82 +133,18 @@ window#waybar {
     padding: 0px 5px;
     margin: 4px 3px;
     border-radius: 15px;
-    border: 0px;
     color: @text;
     transition: all 0.3s ease-in-out;
 }
 
 #workspaces button.active {
-    color: @crust;
-    background: @workspacesbackground1;
-    border-radius: 15px;
     min-width: 40px;
-    transition: all 0.3s ease-in-out;
 }
 
 #workspaces button:hover {
+    background-color: @surface1;
     color: @crust;
-    background: @workspacesbackground2;
-    border-radius: 15px;
 }
-
-/* -----------------------------------------------------
- * Tooltips
- * ----------------------------------------------------- */
-
-tooltip {
-    border-radius: 10px;
-    background-color: @backgroundlight;
-    opacity:0.8;
-    padding:20px;
-    margin:0px;
-}
-
-tooltip label {
-    color: @textcolor2;
-}
-
-/* -----------------------------------------------------
- * Window
- * ----------------------------------------------------- */
-
-#window {
-    background: @backgroundlight;
-    margin: 8px 5px 8px 5px;
-    padding: 2px 10px;
-    border-radius: 15px;
-    color: @textcolor2;
-    font-size: 16px;
-    font-weight: normal;
-}
-
-window#waybar.empty #window {
-    background-color:transparent;
-}
-
-/* -----------------------------------------------------
- * Taskbar
- * ----------------------------------------------------- */
-
-#taskbar {
-    background: @backgroundlight;
-    margin: 6px 15px 6px 0px;
-    padding:0px;
-    border-radius: 15px;
-    font-weight: normal;
-    font-style: normal;
-    border: 3px solid @backgroundlight;
-}
-
-#taskbar button {
-    margin:0;
-    border-radius: 15px;
-    padding: 0px 5px 0px 5px;
-}
-
-/* -----------------------------------------------------
- * Modules
- * ----------------------------------------------------- */
 
 .modules-left > widget:first-child > #workspaces {
     margin-left: 0;
@@ -163,52 +155,54 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
- * Custom Quicklinks
+ * Hardware group - children sit inside the parent pill
  * ----------------------------------------------------- */
 
-#custom-browser, 
-#custom-filemanager,
-#network,
-#pulseaudio,
-#battery,
-#custom-appmenu,
-#clock {
-    margin-right: 5px;
-    font-weight: bold;
-    color: @iconcolor;
-    padding: 2px 10px;
+#disk,
+#memory,
+#cpu,
+#language {
+    margin: 0px;
+    padding: 0px 3px;
     font-size: 16px;
+    color: @pilltext;
 }
 
-#custom-quicklink1,
-#custom-quicklink2,
-#custom-quicklink3,
-#custom-quicklink4,
-#custom-quicklink5,
-#custom-quicklink6,
-#custom-quicklink7,
-#custom-quicklink8,
-#custom-quicklink9,
-#custom-quicklink10 {
-    padding:0px;
-    margin-right: 7px;
-    font-size:20px;
-    color: @iconcolor;
+#language {
+    margin-right: 3px;
 }
 
 /* -----------------------------------------------------
- * Custom Modules
+ * Battery - blink on critical
  * ----------------------------------------------------- */
 
-#custom-appmenu {
-    background-color: @backgrounddark;
-    color: @textcolor1;
-    border-radius: 15px;
-    margin: 10px 10px 10px 10px;
+@keyframes blink {
+    to {
+        background-color: @accent;
+        color: @crust;
+    }
+}
+
+#battery.critical:not(.charging) {
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 /* -----------------------------------------------------
- * Custom Exit
+ * Bluetooth - collapses to nothing when the radio is off
+ * ----------------------------------------------------- */
+
+#bluetooth.off {
+    background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* -----------------------------------------------------
+ * Exit - a round accent button, not a pill
  * ----------------------------------------------------- */
 
 #custom-exit {
@@ -223,133 +217,7 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
- * Hardware Group
- * ----------------------------------------------------- */
-
-#hardware,
-#hardware-mini {
-    background-color: @backgroundlight;
-    border-radius: 15px;
-    margin: 8px 5px 8px 0px;
-    padding: 2px 10px;
-}
-
-#disk, #memory, #cpu, #language {
-    margin: 0px;
-    padding: 0px 3px;
-    font-size: 16px;
-    color: @textcolor2;
-}
-
-#language {
-    margin-right: 3px;
-}
-
-/* -----------------------------------------------------
- * Clock
- * ----------------------------------------------------- */
-
-#clock {
-    background-color: @backgrounddark;
-    font-size: 16px;
-    color: @textcolor1;
-    border-radius: 15px;
-    margin: 8px 5px 8px 0px;
-}
-
-/* -----------------------------------------------------
- * Pulseaudio
- * ----------------------------------------------------- */
-
-#pulseaudio {
-    background-color: @backgroundlight;
-    font-size: 16px;
-    color: @textcolor2;
-    border-radius: 15px;
-    margin: 8px 5px 8px 0px;
-}
-
-#pulseaudio.muted {
-    background-color: @accent;
-    color: @subtext0;
-}
-
-/* -----------------------------------------------------
- * Network
- * ----------------------------------------------------- */
-
-#network {
-    background-color: @backgroundlight;
-    font-size: 16px;
-    color: @textcolor2;
-    border-radius: 15px;
-    margin: 8px 5px 8px 0px;
-}
-
-#network.ethernet {
-    background-color: @backgroundlight;
-    color: @textcolor2;
-}
-
-#network.wifi {
-    background-color: @backgroundlight;
-    color: @textcolor2;
-}
-
-/* -----------------------------------------------------
- * Bluetooth
- * ----------------------------------------------------- */
-
- #bluetooth, #bluetooth.on, #bluetooth.connected {
-    background-color: @backgroundlight;
-    font-size: 16px;
-    color: @textcolor2;
-    border-radius: 15px;
-    margin: 8px 5px 8px 0px;
-}
-
-#bluetooth.off {
-    background-color: transparent;
-    padding: 0px;
-    margin: 0px;
-}
-
-/* -----------------------------------------------------
- * Battery
- * ----------------------------------------------------- */
-
-#battery {
-    background-color: @backgroundlight;
-    font-size: 16px;
-    color: @textcolor2;
-    border-radius: 15px;
-    margin: 8px 5px 8px 0px;
-}
-
-#battery.charging, #battery.plugged {
-    color: @text;
-    background-color: @accent;
-}
-
-@keyframes blink {
-    to {
-        background-color: @accent;
-        color: @crust;
-    }
-}
-
-#battery.critical:not(.charging) {
-    background-color: @errorcolor;
-    color: @crust;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-/* -----------------------------------------------------
- * Tray
+ * Tray - bare icons, no pill
  * ----------------------------------------------------- */
 
 #tray {
@@ -367,21 +235,17 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
- * Other
+ * Tooltips
  * ----------------------------------------------------- */
 
-label:focus {
-    background-color: #000000;
+tooltip {
+    background-color: @pill;
+    border-radius: 10px;
+    opacity: 0.8;
+    padding: 20px;
+    margin: 0px;
 }
 
-#backlight {
-    background-color: #90b1b1;
-}
-
-#network {
-    background-color: #2980b9;
-}
-
-#network.disconnected {
-    background-color: @errorcolor;
+tooltip label {
+    color: @pilltext;
 }
