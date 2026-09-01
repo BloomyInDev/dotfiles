@@ -13,19 +13,20 @@
 //
 {
   // Workspaces
-  "hyprland/workspaces": {
+  //
+  // ext/workspaces, not hyprland/workspaces: the latter switches workspaces by
+  // sending the legacy `dispatch workspace N`, which Hyprland 0.56 rejects as a
+  // syntax error under a Lua config (it wants hl.dsp.focus), leaving the
+  // buttons dead -- upstream Waybar#5008. This one activates over the
+  // ext-workspace-v1 protocol instead, so no dispatcher syntax is involved.
+  //
+  // It has no "persistent-workspaces"; workspace 1 is pinned by the compositor
+  // in hypr/conf/layouts.lua instead.
+  "ext/workspaces": {
     "on-click": "activate",
     "active-only": false,
     "all-outputs": true,
-    "format": "{}",
-    "format-icons": {
-      "urgent": "",
-      "active": "",
-      "default": ""
-    },
-    "persistent-workspaces": {
-      "*": 1
-    }
+    "format": "{name}"
   },
   // Hyprland Window
   "hyprland/window": {

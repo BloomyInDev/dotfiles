@@ -142,7 +142,16 @@ window#waybar.empty #window {
 }
 
 #workspaces button:hover {
-    background-color: @surface1;
+    /* `background`, not `background-color`: the GTK theme paints its own
+     * prelight gradient as a background-image, and a bare colour sits behind
+     * it. The shorthand resets the image, so these colours actually show. */
+    background: @surface1;
+    color: @text;
+}
+
+/* Hover must not steal the accent from the workspace you are on. */
+#workspaces button.active:hover {
+    background: @accent;
     color: @crust;
 }
 
