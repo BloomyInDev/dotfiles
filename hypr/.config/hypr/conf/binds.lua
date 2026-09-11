@@ -120,3 +120,4 @@ hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd(apps.lock .. " --immediate"), { 
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd(apps.logout))
 bind("SHIFT + P", hl.dsp.exec_cmd(apps.logout))
 bind("XF86PowerOff", hl.dsp.exec_cmd(apps.lock))
+bind("SHIFT + L", hl.dsp.exec_cmd(apps.lock))              -- Lock the screen
