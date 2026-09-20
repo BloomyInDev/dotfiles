@@ -14,6 +14,8 @@ My personal Hyprland setup, based around Arch Linux, the Hyprland suite, waybar,
 | `rofi`    | `~/.config/rofi`   | Application launcher, called from the hypr binds  |
 | `zed`     | `~/.config/zed`    | Editor settings                                   |
 | `env`     | `~/.config/environment.d` | `SSH_AUTH_SOCK` for the systemd user session |
+| `claude`  | `~/.claude`        | Claude Code settings, hooks and statusline        |
+| `agents`  | `~/.agents`        | Skills shared by every agent, linked into `~/.claude/skills` by `make claude-skills` |
 
 ## Install
 
@@ -43,6 +45,8 @@ make list                 # available packages
 - [**Configuration choices**](docs/choices.md): why each config is set up
   the way it is, and the non-obvious bits worth knowing before editing them.
 - [**Keybinds**](docs/keybinds.md): every Hyprland bind, plus gestures.
+- [**Claude Code**](docs/claude-code.md): what of `~/.claude` is tracked, what
+  is deliberately left out, and how to install it on a new machine.
 - [**Fresh machine setup**](docs/setup.md): packages to install, the `~/.ssh`
   layout the git identities expect, and the agent / signing setup.
 
