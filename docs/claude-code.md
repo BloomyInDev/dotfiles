@@ -52,6 +52,18 @@ The `mkdir` matters. Without it stow *folds* the tree: it makes
 no longer add its own skills next to these ones. Creating the directories first
 forces stow to link each skill individually.
 
+Then install the private repo, which adds `CLAUDE.md` and the two
+infrastructure skills into the same `~/.claude`:
+
+```bash
+git clone git@git.red.bloomyindev.me:bastien/dotfiles-private.git ~/Dev/dotfiles-private
+make -C ~/Dev/dotfiles-private install
+```
+
+Its README documents the split between the two repos and what belongs on which
+side. Without it the setup still works, minus the global instructions and the
+`homelab` / `pro-infra` skills.
+
 Plugins restore themselves on the next `claude` start, from
 `extraKnownMarketplaces`.
 
