@@ -9,8 +9,8 @@ and stow symlinks it file by file, so nothing else in the directory is touched.
 
 | Path | What it is |
 |------|------------|
-| `settings.json` | model, effort level, hooks, statusline, enabled plugins and their marketplaces |
-| `hooks/` | the caveman plugin's hook scripts, plus `statusline-custom.sh` |
+| `settings.json` | model, effort level, statusline, enabled plugins and their marketplaces |
+| `hooks/` | `statusline-custom.sh`, the only hook script left |
 | `skills/` | only `~/.claude/skills` *links*, recreated by `make claude-skills`, never stowed |
 
 The skills themselves are in the separate `agents` package, at
@@ -24,10 +24,7 @@ resolves against the repo directory, not against `$HOME`, so it would point at
 them directly instead.
 
 `improve`, `grill-me` and `grilling` come from upstream repos and are recorded
-in `.skill-lock.json`; `unslop`, `plan-runner` and the `caveman-*` set are
-vendored. The `caveman-*` and `cavecrew` skills are byte-identical copies of
-what the enabled `caveman` plugin already ships, so they are duplicates worth
-deleting some day.
+in `.skill-lock.json`; `unslop` and `plan-runner` are vendored.
 
 ## What is deliberately not tracked
 
@@ -67,7 +64,10 @@ nvm install path this machine happens to have.
 ## One caveat
 
 Claude Code rewrites `settings.json` itself when you change the model, the
-theme, or enable a plugin from the TUI. If a rewrite ever replaces the symlink
-with a regular file, the package stops tracking your changes. `ls -l
+theme, or enable a plugin. `claude plugin uninstall` was observed writing
+through the symlink and leaving it in place, so the package keeps tracking
+those changes, but the file is edited behind your back: check `git status`
+after fiddling with plugins. If a rewrite ever replaces the link with a regular
+file, tracking stops silently. `ls -l
 ~/.claude/settings.json` tells you; `make reinstall PKG=claude` puts the link
 back, after copying anything worth keeping back into the repo.

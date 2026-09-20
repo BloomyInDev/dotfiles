@@ -104,23 +104,6 @@ MAGENTA="\033[35m"
 WHITE="\033[97m"
 DIM="\033[2m"
 
-# --- Caveman badge ---
-FLAG="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/.caveman-active"
-CAVEMAN_BADGE=""
-if [ -f "$FLAG" ] && [ ! -L "$FLAG" ]; then
-  MODE=$(head -c 64 "$FLAG" 2>/dev/null | tr -d '\n\r' | tr '[:upper:]' '[:lower:]')
-  MODE=$(printf '%s' "$MODE" | tr -cd 'a-z0-9-')
-  case "$MODE" in
-  off | lite | full | ultra | wenyan-lite | wenyan | wenyan-full | wenyan-ultra | commit | review | compress)
-    if [ -z "$MODE" ] || [ "$MODE" = "full" ]; then
-      CAVEMAN_BADGE="\033[38;5;172m[UGH]\033[0m "
-    else
-      CAVEMAN_BADGE="\033[38;5;172m[UGH:$(echo "$MODE" | tr '[:lower:]' '[:upper:]')]\033[0m "
-    fi
-    ;;
-  esac
-fi
-
 # --- Build limits section ---
 LIMITS_DISPLAY=""
 if [ -n "$USAGE_LIMITS" ]; then
@@ -149,4 +132,4 @@ fi
 CTX_COLOR=$(get_color "$PERCENT")
 
 # --- Output ---
-echo -e "${CAVEMAN_BADGE}${WHITE}${MODEL}${RESET}${LIMITS_DISPLAY} | ctx:${CTX_COLOR}${PERCENT}%${RESET}"
+echo -e "${WHITE}${MODEL}${RESET}${LIMITS_DISPLAY} | ctx:${CTX_COLOR}${PERCENT}%${RESET}"
