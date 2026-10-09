@@ -72,3 +72,11 @@ rule({
     match            = { class = "^zoom(.*)" },
     no_initial_focus = true,
 })
+
+-- LibreOffice restores its saved "maximized" state on every start and asks the
+-- compositor for it, which overrides the tile it was given.
+rule({
+    name           = "libreoffice-no-maximize",
+    match          = { class = "^(libreoffice-.*)$" },
+    suppress_event = "maximize",
+})
