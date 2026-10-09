@@ -30,7 +30,8 @@ local autostart = {
     "kdeconnectd",
     "kbuildsycoca6",
     "kwalletd6",
-    "nextcloud",
+    -- "nextcloud", -- I'm not using it anymore, moving to OpenCloud
+    "opencloud",
 }
 
 hl.on("hyprland.start", function()
