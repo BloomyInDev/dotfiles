@@ -38,10 +38,14 @@ return {
 	-- These only exist for the cases where you want a *different* config for a
 	-- screen you already own. Flip one, save, done (monitors hot-reload).
 	displays = {
-		laptop_gaming = false, -- eDP-1 down to 1280x800, games are heavy
+		-- Lower res / higher refresh per screen while gaming
+		gaming = {
+			laptop = false, -- eDP-1 down to 1280x800, games are heavy
+			samsung = false, -- Samsung (home desk): 1280x720@144, repositioned
+			bedroom = false, -- Lenovo T2224pD (parents' bedroom): 1600x900@75
+		},
 		laptop_rotated = false, -- eDP-1 rotated 90°
 		laptop_off = false, -- eDP-1 disabled entirely (overrides the two above)
-		samsung_gaming = false, -- gaming on the Samsung (home desk): 1280x720@144, repositioned
 		lan = false, -- Lenovo LT2223pwC alone, centered instead of right
 	},
 
