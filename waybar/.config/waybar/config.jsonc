@@ -22,7 +22,7 @@
     ],
     "modules-right": [
       "pulseaudio",
-      "network",
+      "custom/network",
       "group/hardware",
       "battery",
       "clock",
@@ -54,7 +54,7 @@
     ],
     "modules-right": [
       "pulseaudio",
-      "network",
+      "custom/network",
       "group/hardware",
       "battery",
       "clock#short",

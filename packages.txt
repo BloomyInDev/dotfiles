@@ -32,6 +32,10 @@ grim
 slurp
 wl-clipboard
 
+# Waybar scripts
+networkmanager
+jq
+
 # Fonts
 ttf-fira-code
 ttf-fira-sans

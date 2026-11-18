@@ -65,7 +65,7 @@ window#waybar {
 #hardware,
 #hardware-mini,
 #pulseaudio,
-#network,
+#custom-network,
 #bluetooth,
 #battery,
 #clock,
@@ -101,7 +101,7 @@ window#waybar {
  * Recipe: error state
  * ----------------------------------------------------- */
 
-#network.disconnected,
+#custom-network.disconnected,
 #battery.critical:not(.charging) {
     background-color: @red;
     color: @crust;

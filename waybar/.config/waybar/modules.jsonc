@@ -145,15 +145,10 @@
     ]
   },
   // Network
-  "network": {
-    "format": "{ifname}",
-    "format-wifi": " {signalStrength}%",
-    "format-ethernet": " {ifname}",
-    "format-disconnected": "Not connected", //An empty format will hide the module.
-    "tooltip-format": " {ifname} via {gwaddri}",
-    "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
-    "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
-    "tooltip-format-disconnected": "Disconnected",
+  "custom/network": {
+    "exec": "~/.config/waybar/scripts/network-status",
+    "return-type": "json",
+    "restart-interval": 5,
     "max-length": 50,
     "on-click": "kitty -T \"Network Manager\" -e \"nmtui\""
   },

@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# Waybar network pill: the usual wifi/ethernet status, plus a route icon and the
+# VPN names in the tooltip. Replaces the built-in "network" module, which can
+# neither show a second icon nor read VPN names.
+
+render() {
+    local type state device name wifi="" ethernet="" signal="" address=""
+    local vpns=()
+
+    # NAME comes last: it is the only field that can contain a colon.
+    while IFS=: read -r type state device name; do
+        [[ $state == activated ]] || continue
+        case $type in
+            802-11-wireless) wifi=$name ;;
+            802-3-ethernet) ethernet=$device ;;
+            wireguard | vpn) vpns+=("$name") ;;
+        esac
+    done < <(nmcli -t -e no -f TYPE,STATE,DEVICE,NAME connection show --active)
+
+    # NetworkManager routes ethernet over wifi by default, so ethernet wins.
+    if [[ -n $ethernet ]]; then
+        address=$(nmcli -g IP4.ADDRESS device show "$ethernet")
+        address=${address%% *}
+    elif [[ -n $wifi ]]; then
+        signal=$(nmcli -t -f ACTIVE,SIGNAL device wifi list --rescan no | sed -n 's/^yes://p')
+    fi
+
+    jq -nc \
+        --arg wifi "$wifi" --arg signal "$signal" \
+        --arg ethernet "$ethernet" --arg address "$address" \
+        '$ARGS.positional as $vpns
+        | ($vpns | map("  " + @html)) as $vpn_lines
+        | if $ethernet != "" then
+            {text: " \($ethernet)", class: "ethernet",
+             line: "  \($ethernet) (\($address))"}
+          elif $wifi != "" then
+            {text: " \($signal)%", class: "wifi",
+             line: "  \($wifi | @html) (\($signal)%)"}
+          else
+            {text: "Not connected", class: "disconnected", line: "Disconnected"}
+          end
+        | {text: (.text + (if ($vpns | length) > 0 then " " else "" end)),
+           class,
+           tooltip: ([.line] + $vpn_lines | join("\n"))}' \
+        --args -- "${vpns[@]}"
+}
+
+# Redraw on every NetworkManager event, and every 30s for the wifi signal.
+# `read` returns above 128 on timeout and 1 on EOF, so a dead monitor exits
+# here and waybar restarts the script.
+render
+while read -r -t 30 _ || (($? > 128)); do
+    render
+done < <(nmcli monitor)

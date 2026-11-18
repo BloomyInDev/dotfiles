@@ -47,6 +47,15 @@ Media keys call `playerctl` and `wpctl` (from wireplumber), brightness keys
 call `brightnessctl`, and `Print` pipes `grim` through `slurp` into
 `wl-copy`. A missing one fails silently: the key does nothing.
 
+### Waybar scripts
+
+```
+networkmanager jq
+```
+
+The network pill (`waybar/scripts/network-status`) reads `nmcli` and builds
+its JSON with `jq`. Without them the pill stays empty.
+
 ### Fonts
 
 ```
