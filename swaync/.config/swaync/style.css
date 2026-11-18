@@ -1,0 +1,366 @@
+/*
+ * SwayNotificationCenter style
+ * Written 2026 by Bastien <contact@bloomyindev.me> (BloomyInDev)
+ *
+ * Matches waybar/style.css: same palette, same pill recipe, same font.
+ * swaync loads /etc/xdg/swaync/style.css first, then this file on top at
+ * user priority, so a rule here wins over the stock one whatever its
+ * specificity. Stock properties not overridden here still apply.
+ * Live reload while editing: swaync-client -rs
+ * -----------------------------------------------------
+*/
+
+/* -----------------------------------------------------
+ * Palette - Catppuccin Frappé, Lavender accent.
+ * Copied from waybar/style.css on purpose: keep both in sync by hand.
+ * ----------------------------------------------------- */
+
+@define-color crust     #232634;
+@define-color surface0  #414559;
+@define-color surface1  #51576d;
+@define-color text      #c6d0f5;
+@define-color subtext0  #a5adce;
+@define-color lavender  #babbf1;
+@define-color red       #e78284;
+
+/* Roles */
+@define-color card      alpha(@crust, 0.85);
+@define-color pill      @surface0;
+@define-color pillhover @surface1;
+@define-color pilltext  #ffffff;
+@define-color accent    @lavender;
+
+/* -----------------------------------------------------
+ * Base
+ * ----------------------------------------------------- */
+
+* {
+    font-family: "Fira Sans Semibold", "JetBrainsMono Nerd Font", sans-serif;
+    font-weight: normal;
+}
+
+notificationwindow,
+blankwindow,
+.blank-window,
+.floating-notifications,
+.control-center .control-center-list {
+    background: transparent;
+}
+
+/* -----------------------------------------------------
+ * Recipe: card
+ *
+ * A notification, and the control center itself.
+ * ----------------------------------------------------- */
+
+.notification,
+.control-center {
+    background-color: @card;
+    color: @text;
+    border: 3px solid @accent;  /* border_size = 3 in hypr/conf/general.lua */
+    border-radius: 10px;
+}
+
+.notification.critical {
+    border-color: @red;
+}
+
+/* -----------------------------------------------------
+ * Recipe: pill
+ *
+ * Every clickable thing: action buttons, reply button, clear all.
+ * ----------------------------------------------------- */
+
+.notification-action > button,
+.inline-reply-button,
+.widget-title > button,
+.widget-mpris .mpris-overlay > box > button {
+    background-color: @pill;
+    color: @pilltext;
+    border: none;
+    border-radius: 15px;
+    padding: 4px 12px;
+    box-shadow: none;
+}
+
+.notification-action > button:hover,
+.inline-reply-button:hover,
+.widget-title > button:hover,
+.widget-mpris .mpris-overlay > box > button:hover {
+    background-color: @accent;
+    color: @crust;
+}
+
+.inline-reply-button:disabled {
+    background-color: transparent;
+    color: @subtext0;
+}
+
+/* -----------------------------------------------------
+ * Notification layout
+ * ----------------------------------------------------- */
+
+.notification-row {
+    background: none;
+    outline: none;
+}
+
+.notification-row:focus,
+.notification-group:focus {
+    background: alpha(@surface0, 0.4);
+}
+
+.notification-background {
+    padding: 6px 8px;
+}
+
+.notification-default-action {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: @text;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.notification-default-action:hover {
+    background: alpha(@surface0, 0.5);
+}
+
+/* Square off the bottom when the action row sits below */
+.notification-default-action:not(:only-child) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.notification-alt-actions {
+    padding: 2px 4px 6px 4px;
+}
+
+.notification-action {
+    margin: 2px;
+}
+
+.notification-content .image {
+    -gtk-icon-filter: none;
+    -gtk-icon-size: 48px;
+    border-radius: 10px;
+    margin: 4px 8px 4px 4px;
+}
+
+.notification-content .app-icon {
+    -gtk-icon-filter: none;
+    -gtk-icon-size: 16px;
+    margin: 6px;
+}
+
+/* GTK 4 base CSS puts a 50% opacity filter on these labels */
+.notification-content .text-box label {
+    filter: none;
+}
+
+.notification-content .summary {
+    font-size: 14px;
+    color: @pilltext;
+}
+
+.notification-content .time {
+    font-size: 12px;
+    color: @subtext0;
+    margin-right: 30px;  /* room for the close button */
+}
+
+.notification-content .body {
+    font-size: 13px;
+    color: @text;
+}
+
+.notification-content progressbar {
+    margin-top: 6px;
+}
+
+.notification-content progressbar progress {
+    background-color: @accent;
+    border-radius: 15px;
+}
+
+.notification-content progressbar trough {
+    background-color: @surface0;
+    border-radius: 15px;
+}
+
+.notification-content .body-image {
+    margin-top: 6px;
+    border-radius: 10px;
+}
+
+/* -----------------------------------------------------
+ * Inline reply
+ * ----------------------------------------------------- */
+
+.inline-reply {
+    margin-top: 6px;
+}
+
+.inline-reply-entry {
+    background-color: @crust;
+    color: @text;
+    caret-color: @accent;
+    border: 1px solid @surface0;
+    border-radius: 15px;
+    padding: 4px 10px;
+}
+
+.inline-reply-entry:focus-within {
+    border-color: @accent;
+}
+
+.inline-reply-button {
+    margin-left: 6px;
+}
+
+/* -----------------------------------------------------
+ * Close button
+ * ----------------------------------------------------- */
+
+.close-button {
+    background-color: @pill;
+    color: @pilltext;
+    border: none;
+    border-radius: 100%;
+    box-shadow: none;
+    padding: 0;
+    margin: 8px 8px 0 0;
+    min-width: 22px;
+    min-height: 22px;
+}
+
+.close-button:hover {
+    background-color: @red;
+    color: @crust;
+}
+
+/* -----------------------------------------------------
+ * Groups (several notifications from one app)
+ * ----------------------------------------------------- */
+
+.notification-group {
+    transition: opacity 200ms ease-in-out;
+}
+
+.notification-group .notification-group-headers,
+.notification-group .notification-group-buttons {
+    margin: 0 16px;
+    color: @text;
+}
+
+.notification-group .notification-group-icon {
+    -gtk-icon-size: 24px;
+}
+
+.notification-group .notification-group-close-button .close-button {
+    margin: 12px 20px;
+}
+
+.notification-group.collapsed.not-expanded {
+    opacity: 0.4;
+}
+
+/* Collapsed stack: cards are opaque so the ones behind do not show through */
+.notification-group.collapsed .notification-row .notification {
+    background-color: @crust;
+}
+
+.notification-group.collapsed .notification-row:not(:last-child) .notification-action,
+.notification-group.collapsed .notification-row:not(:last-child) .notification-default-action {
+    opacity: 0;
+}
+
+/* -----------------------------------------------------
+ * Control center widgets
+ * ----------------------------------------------------- */
+
+.control-center {
+    padding: 4px;
+}
+
+.control-center-list-placeholder {
+    color: @subtext0;
+}
+
+.widget {
+    margin: 6px 8px;
+    padding: 4px;
+}
+
+.widget-title > label {
+    font-size: 18px;
+    color: @pilltext;
+}
+
+.widget-dnd label {
+    font-size: 14px;
+    color: @text;
+}
+
+.widget-dnd switch {
+    background-color: @pill;
+    border: none;
+    border-radius: 15px;
+}
+
+.widget-dnd switch:checked {
+    background-color: @accent;
+}
+
+.widget-dnd switch slider {
+    background-color: @pilltext;
+    border-radius: 15px;
+    min-width: 20px;
+    min-height: 20px;
+    margin: 2px;
+}
+
+/* Media player */
+.widget-mpris {
+    padding: 0;
+}
+
+.widget-mpris .widget-mpris-player {
+    margin: 6px 8px;
+    border-radius: 10px;
+}
+
+.widget-mpris .mpris-background {
+    filter: blur(10px);
+}
+
+.widget-mpris .mpris-overlay {
+    padding: 12px;
+    background-color: alpha(@crust, 0.6);
+}
+
+.widget-mpris .widget-mpris-album-art {
+    border-radius: 10px;
+    -gtk-icon-size: 72px;
+}
+
+.widget-mpris .widget-mpris-title {
+    font-size: 15px;
+    color: @pilltext;
+}
+
+.widget-mpris .widget-mpris-subtitle {
+    font-size: 13px;
+    color: @subtext0;
+}
+
+.widget-mpris > box > button {
+    background: transparent;
+    color: @text;
+    border: none;
+}
+
+.widget-mpris > box > button:disabled {
+    color: @surface1;
+}

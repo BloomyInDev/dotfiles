@@ -19,6 +19,7 @@ workspace keys are named `ampersand`, `eacute`, … rather than `1`, `2`, …
 | `SUPER + B` | Browser (librewolf) |
 | `SUPER + D` | Discord |
 | `SUPER + M` | Clipboard history (clipse) |
+| `SUPER + N` | Notification panel (swaync) |
 | `SUPER + SHIFT + B` | Restart waybar |
 | `SUPER + SHIFT + W` | Restart hyprpaper (after changing wallpaper) |
 

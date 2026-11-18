@@ -20,7 +20,7 @@ The groups below explain what each part is for.
 ```
 hyprland hyprlock hypridle hyprpaper hyprlauncher
 hyprpolkitagent xdg-desktop-portal-hyprland
-waybar wlogout dunst
+waybar wlogout swaync
 ```
 
 `hyprpolkitagent` and `xdg-desktop-portal-hyprland` are started as user units
@@ -70,7 +70,7 @@ applied at session start via `hyprctl setcursor`.
 stow make
 ```
 
-Optional, per taste: `bitwarden-desktop`, `nextcloud`, `kdeconnect`,
+Optional, per taste: `bitwarden-desktop`, `opencloud`, `kdeconnect`,
 `galaxybudsclient`, all launched from `conf/autostart.lua`. I use them,
 you may not. Remove them if you don't need them.
 

@@ -12,7 +12,7 @@ hyprpolkitagent
 xdg-desktop-portal-hyprland
 waybar
 wlogout
-dunst
+swaync
 
 # Applications referenced by conf/vars.lua
 kitty

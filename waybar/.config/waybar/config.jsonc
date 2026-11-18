@@ -26,6 +26,7 @@
       "group/hardware",
       "battery",
       "clock",
+      "custom/notification",
       "tray",
       "custom/exit"
     ]
@@ -57,6 +58,7 @@
       "group/hardware",
       "battery",
       "clock#short",
+      "custom/notification",
       "tray",
       "custom/exit"
     ]

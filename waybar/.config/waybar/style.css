@@ -70,7 +70,8 @@ window#waybar {
 #battery,
 #clock,
 #custom-music,
-#custom-system {
+#custom-system,
+#custom-notification {
     background-color: @pill;
     color: @pilltext;
     border-radius: 15px;
@@ -89,6 +90,8 @@ window#waybar {
 #pulseaudio.muted,
 #battery.charging,
 #battery.plugged,
+#custom-notification.notification,
+#custom-notification.dnd-notification,
 #workspaces button.active {
     background-color: @accent;
     color: @crust;

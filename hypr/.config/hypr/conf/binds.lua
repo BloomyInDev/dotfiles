@@ -23,6 +23,7 @@ local launchers = {
     { "D",         "discord" },
     { "B",         apps.browser },      -- Opens the browser
     { "M",         apps.clipboard },
+    { "N",         "swaync-client -t -sw" },  -- Notification panel
     -- These two used to call ~/.config/ml4w/scripts/*.sh, which were just
     -- killall + sleep + relaunch. Inlined so the config owns nothing in ml4w.
     { "SHIFT + B", "killall -9 waybar; sleep 1; waybar" },      -- Reload Waybar

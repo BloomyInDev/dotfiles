@@ -9,6 +9,7 @@ My personal Hyprland setup, based around Arch Linux, the Hyprland suite, waybar,
 | `hypr`    | `~/.config/hypr`   | Hyprland (Lua config), hyprlock, hypridle, hyprpaper |
 | `waybar`  | `~/.config/waybar` | Status bar, with per-output configs for the laptop and external monitors |
 | `wlogout` | `~/.config/wlogout`| Power menu, incl. a reboot-to-Windows button      |
+| `swaync`  | `~/.config/swaync` | Notifications and side panel, styled like waybar  |
 | `git`     | `~/.gitconfig`, `~/.config/gitremote` | Per-forge identities and SSH commit signing |
 | `kitty`   | `~/.config/kitty`  | Terminal                                          |
 | `rofi`    | `~/.config/rofi`   | Application launcher, called from the hypr binds  |
