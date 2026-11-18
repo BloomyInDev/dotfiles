@@ -7,5 +7,5 @@ hl.config({
 
 -- Persistent so workspace 1 is always drawn in the bar, even when empty.
 -- waybar's ext/workspaces has no "persistent-workspaces" of its own, so the
--- compositor owns this now.
-hl.workspace_rule({ workspace = 1, layout = "scrolling", persistent = true })
+-- compositor owns this now. It lives on the laptop screen (chat + music).
+hl.workspace_rule({ workspace = 1, monitor = "eDP-1", layout = "scrolling", persistent = true })

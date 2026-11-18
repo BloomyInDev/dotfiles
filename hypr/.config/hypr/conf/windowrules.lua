@@ -80,3 +80,16 @@ rule({
     match          = { class = "^(libreoffice-.*)$" },
     suppress_event = "maximize",
 })
+
+-- Chat and music live on workspace 1 (the laptop screen, see layouts.lua)
+rule({
+    name      = "discord-ws1",
+    match     = { class = "^(discord)$" },
+    workspace = "1 silent",
+})
+
+rule({
+    name      = "spotify-ws1",
+    match     = { class = "^(Spotify)$" },
+    workspace = "1 silent",
+})
