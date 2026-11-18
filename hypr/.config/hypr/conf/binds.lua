@@ -114,6 +114,11 @@ end
 hl.bind("CTRL + XF86AudioPlay", hl.dsp.exec_cmd(player .. " previous"), { release = true })
 hl.bind("ALT + XF86AudioPlay", hl.dsp.exec_cmd(player .. " next"), { release = true })
 
+-- Discord mic toggle, sent to its window so it works from a focused game.
+local discordMute = hl.dsp.send_shortcut({ mods = "CTRL SHIFT", key = "M", window = "class:^(discord)$" })
+bind("SHIFT + M", discordMute)
+hl.bind("XF86AudioMicMute", discordMute)
+
 hl.bind("Print", hl.dsp.exec_cmd(apps.screenshot))
 
 -- Lock on laptop close
